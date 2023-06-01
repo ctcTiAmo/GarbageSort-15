@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>垃圾分类系统</title>
+    <link rel="stylesheet" href="../../static/css/public.css"/>
+    <link rel="stylesheet" href="../../static/css/style.css"/>
+</head>
+<body>
+{% if status == 1 %}
+    <script>
+    alert("修改成功！！！")
+    </script>
+{% elif status == 2 %}
+    <script>
+    alert("您输入的格式有误！请在垃圾桶数量中输入数字！！！")
+    </script>
+{% endif %}
+<!--头部-->
+    <header class="publicHeader">
+        <h1>垃圾分类系统</h1>
+        <div class="publicHeaderR">
+            <p><span id="hours"></span><span style="color: #fff21b"> {{ name }}</span>管理员 , 欢迎你！</p>
+            <a href="/login?">退出</a>
+        </div>
+    </header>
+<!--时间-->
+
+    <section class="publicTime">
+        <span id="time"></span>
+        <a href="#">温馨提示：为了能正常浏览，请使用Chrome浏览器！</a>
+    </section>
+<!--主体内容-->
+    <section class="publicMian ">
+        <div class="left">
+            <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
+            <nav>
+                <ul class="list">
+                <li><a href="/manager_information?">管理员个人信息</a></li>
+                <li><a href="/manage_common?">管理注册用户</a></li>
+                <li><a href="/manage_dump?">管理垃圾回收点</a></li>
+                <li><a href="/add_new_dump?">添加垃圾回收点</a></li>
+                <li><a href="/search_record?">查看投放记录</a></li>
+                <li><a href="/manage_analysis?">数据分析</a></li>
+                <li><a href="/change_manager_password?">密码修改</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="right">
+            <div class="location">
+                <strong>你现在所在的位置是:</strong>
+                <span>修改垃圾回收点信息页面</span>
+            </div>
+            <div class="providerAdd">
+                <form action="/alter_dump/"method="post">
+                    {% csrf_token %}
+                    <div>
+                        <label >垃圾回收点编号：</label>
+                        <input type="text" name="dump_id"value="{{ dump_id }}"id="dump_id" readonly/><img src="../../static/img/jinzhixiugai.jpg" style="position: relative;
+    right: 25px;top: 5px;">
+                        <label >垃圾回收点位置：</label>
+                        <select name="dump_place"id="dump_place" required/>
+                        <option value="{{ dump_place }}">{{ dump_place }}</option>
+                        <option value="牧野区">牧野区</option>
+                        <option value="凤泉区">凤泉区</option>
+                        <option value="卫滨区">卫滨区</option>
+                        <option value="红旗区">红旗区</option>
+                        <option value="新乡县">新乡县</option>
+                        <option value="获嘉县">获嘉县</option>
+                        <option value="原阳县">原阳县</option>
+                        <option value="延津县">延津县</option>
+                        <option value="封丘县">封丘县</option>
+                        <option value="长垣县">长垣县</option>
+                        <option value="卫辉市">卫辉市</option>
+                        <option value="辉县市">辉县市</option>
+                        <option value="河南师范大学">河南师范大学
+                        </select>
+                    </div>
+                    <div>
+                        <label >垃圾桶类型：</label>
+                        <select name="type_name"id="type_name" required/>
+                        <option value="{{ type_name }}">{{ type_name }}</option>
+                         {% for type in types %}
+                            <option value="{{type.type_name}}">{{type.type_name}}</option>
+                         {% endfor %}
+                        </select>
+                        <label style="margin-left: 20px">垃圾桶数量：</label>
+                        <input type="text" name="dump_number"value="{{ dump_number }}"id="dump_number" required/>
+                    </div>
+                    <div class="providerAddBtn">
+                        <input type="submit"value="确&nbsp;认"style=" width: 88px;
+    height: 42px;
+    position: absolute;
+    left: 710px;
+    top: 280px;
+    font-size: 20px;">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+<script src="../../static/js/jquery.js"></script>
+<script src="../../static/js/js.js"></script>
+<script src="../../static/js/time.js"></script>
+
+</body>
+</html>
+
+

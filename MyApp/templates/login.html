@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../static/css/New.css">
+</head>
+<div class="c1">
+    {% if status == 0 %}
+    <script>
+    alert("您的账号或密码有误，请重新检查您的账号或密码")
+    </script>
+    {% elif status == 1 %}
+    <script>
+        alert("手机号已存在！")
+    </script>
+    {% elif status == 2 %}
+    <script>
+        alert("该昵称已占用！")
+    </script>
+    {% elif status == 3 %}
+    <script>
+        alert("手机号格式错误！")
+
+    {% elif status == 6 %}
+    <script>
+        alert("注册成功！")
+    </script>
+     {% endif %}
+</div>
+<body>
+
+
+    <div class="box">
+        <h2>欢迎使用垃圾分类管理系统</h2>
+        <h2>Login</h2>
+        <form action="/login_judge/" method="post"><!--提交到login_judge登录判定函数-->
+        <div class="input-box">
+            <label>账号</label>
+            <input type="text" name="telephone" class="name" placeholder="手机号" required>
+        </div>
+        <div class="input-box">
+            <label>密码</label>
+            <input type="password" name="password" class="password" placeholder="密码" required>
+        </div>
+            <div style="display: inline;margin: 20px;
+
+ color:rgba(255,255,255,0.4)
+">
+                <a href="http://127.0.0.1:8000/managerup/">管理员注册</a>
+            </div>
+            <div style="display: inline;margin: 20px;
+ color:rgba(255,255,255,0.4)
+">
+                <a href="#" onclick="alert('该功能正在开发中，请等待后续版本更新')">忘记密码</a>
+            <div>
+                <input type="submit" value="登录"style="
+    width: 120px;
+    height: 35px;
+    color: rgba(255,255,255,0.9);
+    border: 1px solid rgba(192, 119, 91, 0.7);
+    background: rgba(192, 119, 91, 0.5);
+    margin: 3px">
+
+
+                <input type="button" onclick="window.location.href='http://127.0.0.1:8000/signup/'"value="注册" style="
+    width: 120px;
+    height: 35px;
+    color: rgba(255,255,255,0.9);
+    border: 1px solid rgba(192, 119, 91, 0.7);
+    background: rgba(192, 119, 91, 0.5);
+    margin: 3px">
+            </div>
+        </div>
+        </form></div>
+
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

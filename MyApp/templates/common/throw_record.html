@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>垃圾分类系统</title>
+    <link rel="stylesheet" href="../../static/css/public1.css"/>
+    <link rel="stylesheet" href="../../static/css/style.css"/>
+</head>
+<body>
+{% if status == 0 %}
+    <script>
+    alert("未找到该垃圾回收点的投放记录！！！")
+    </script>
+{% elif status == 1 %}
+    <script>
+    alert("未找到投放该类型垃圾的记录！！！")
+    </script>
+{% elif status == 2 %}
+    <script>
+    alert("未找到该垃圾回收点中投放该类型垃圾的记录！！！")
+    </script>
+{% elif status == 3 %}
+    <script>
+    alert("请选择查询投放记录的条件！！！")
+    </script>
+{% endif %}
+<!--头部-->
+    <header class="publicHeader">
+        <h1>垃圾分类系统</h1>
+        <div class="publicHeaderR">
+            <p><span id="hours"></span><span style="color: #fff21b"> {{ name }}</span> , 欢迎你！</p>
+            <a href="/login?">退出</a>
+        </div>
+    </header>
+    <section class="publicTime">
+        <span id="time"></span>
+        <a href="#">温馨提示：为了能正常浏览，请使用Chrome浏览器！）</a>
+    </section>
+    <section class="publicMian ">
+        <div class="left">
+            <h2 class="leftH2"><span class="span1"></span>功能列表 <span></span></h2>
+            <nav>
+                <ul class="list">
+                    <li><a href="/common_information?">用户个人信息</a></li>
+                    <li><a href="/garbage_type?">查看垃圾类别</a></li>
+                    <li><a href="/search_dump?">查看垃圾回收点</a></li>
+                    <li><a href="/throw_record?">查看投放记录</a></li>
+                    <li><a href="/common_analysis?">数据分析</a></li>
+                    <li><a href="/change_password?">密码修改</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="right">
+            <div class="location">
+                <strong>你现在所在的位置是:</strong>
+                <span>查看垃圾投放记录页面</span>
+            </div>
+        <form>
+        {% csrf_token %}
+        <div class="search">
+                <span>垃圾回收点：</span>
+                <select name="dump_place"id="dump_place">
+                        <option value="">--请选择垃圾回收点--</option>
+                        <option value="牧野区">牧野区</option>
+                        <option value="凤泉区">凤泉区</option>
+                        <option value="卫滨区">卫滨区</option>
+                        <option value="红旗区">红旗区</option>
+                        <option value="新乡县">新乡县</option>
+                        <option value="获嘉县">获嘉县</option>
+                        <option value="原阳县">原阳县</option>
+                        <option value="延津县">延津县</option>
+                        <option value="封丘县">封丘县</option>
+                        <option value="长垣县">长垣县</option>
+                        <option value="卫辉市">卫辉市</option>
+                        <option value="辉县市">辉县市</option>
+                        <option value="河南师范大学">河南师范大学
+                        </select>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+                <span>投放垃圾类型：</span>
+                <select name="type_id"id="type_id">
+                    <option value="">--请选择垃圾类型--</option>
+                    <option value="A">可回收垃圾</option>
+                    <option value="B">厨余垃圾</option>
+                    <option value="C">有害垃圾</option>
+                    <option value="D">其他垃圾</option>
+                </select>
+                <input type="submit" value="查询"formaction="/throw_record/"formmethod="post" style="width: 70px;height: 37px;position: absolute;left: 850px;top: 115px;"/><!--点击查询按钮后提交到throw_record函数的post部分执行 -->
+        </div>
+    </form>
+            <div style="overflow: scroll;height: 604px;">
+            <table class="providerTable" cellpadding="0" cellspacing="0"style="position: relative;top: 8px;width: 1113px;left: 100px;margin-left: -94px;">
+            <tr class="firstTr">
+                <th style="width: 70px;">用户昵称</th>
+                <th style="width: 70px;">用户手机号</th>
+                <th style="width: 70px;">垃圾回收点编号</th>
+                <th style="width: 70px;">垃圾回收点</th>
+                <th style="width: 70px;">投放垃圾类型</th>
+                <th style="width: 70px;">投放时间</th>
+            </tr>
+                {% for record in records %}
+                    <tr>
+                    <td>{{ record.common_id }}</td>
+                    <td>{{ record.common_tel }}</td>
+                    <td>{{ record.dump_id }}</td>
+                    <td>{{ record.dump_place }}</td>
+                    <td>{{ record.dump_type.type_name }}</td>
+                    <td>{{ record.throw_time }}</td>
+                </tr>
+                {% endfor %}
+        </table>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    </footer>
+
+<script src="../../static/js/jquery.js"></script>
+<script src="../../static/js/js.js"></script>
+<script src="../../static/js/time.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../../static/css/New.css">
+</head>
+<body>
+<div class="box">
+
+		<h2>管理员注册</h2>
+		<form action="/manager_register/" method="post">
+            <div class="input-box">
+			<input type="text"  name="manager_name" placeholder="姓名" required>
+            </div>
+            <div class="input-box">
+			<input type="text"  name="manager_id" placeholder="昵称" required=>
+            </div>
+            <div class="input-box">
+            <input type="text"  name="manager_email" placeholder="邮箱" required="">
+            </div>
+            <div class="input-box">
+            <input type="text"  name="manager_telephone" placeholder="电话" required="">
+            </div>
+            <div class="input-box">
+            <input type="password"  name="manager_password" placeholder="密码" required="">
+            </div>
+			<input type="submit" value="注册"style="
+    width: 120px;
+    height: 35px;
+    color: rgba(255,255,255,0.9);
+    border: 1px solid rgba(192, 119, 91, 0.7);
+    background: rgba(192, 119, 91, 0.5);
+    margin: 3px">
+
+		</form>
+	</div>
+    <div class="clear"></div>
+</body>
+</html>
